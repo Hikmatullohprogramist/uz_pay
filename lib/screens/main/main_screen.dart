@@ -1,4 +1,3 @@
-import 'dart:typed_data';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:collection/collection.dart';
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 import 'package:provider/provider.dart';
 import 'package:uz_pay/screens/card/add/add_card.dart';
+import 'package:uz_pay/screens/card/add/transfer2card/transfer2card.dart';
 import 'package:uz_pay/screens/main/main_view_mode.dart';
 import 'package:uz_pay/utils/constantas.dart';
 import 'package:uz_pay/widgets/custom_input.dart';
@@ -77,7 +77,8 @@ class _MainScreenState extends State<MainScreen> {
                 Consumer<MainViewModel>(
                   builder: (context, value, child) {
                     return CarouselSlider(
-                      items: [
+
+                        items: [
                         ...value.cardList
                             .mapIndexed((index, e) => ClipRRect(
                                   borderRadius: BorderRadius.circular(16),
@@ -168,6 +169,8 @@ class _MainScreenState extends State<MainScreen> {
                         viewportFraction: 0.7,
                         aspectRatio: 2.5,
                         initialPage: 2,
+                        enableInfiniteScroll: false,
+
                       ),
                     );
                   },
@@ -186,11 +189,13 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     CustomInput(
                       hint: "Card number",
-                      suffix: const Icon(
+                      suffix: IconButton(onPressed: (){
+                        Get.to(const TransferToCard());
+                      }, icon: const Icon(
                         Icons.arrow_circle_right,
                         color: Colors.blue,
                         size: 40,
-                      ),
+                      )),
                       miLenght: 16,
                     ),
                   ],
@@ -198,11 +203,11 @@ class _MainScreenState extends State<MainScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text("Payments categories",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18)),
@@ -230,11 +235,11 @@ class _MainScreenState extends State<MainScreen> {
                     );
                   },
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text("Payments history",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 18)),
@@ -259,7 +264,7 @@ class _MainScreenState extends State<MainScreen> {
                                 Text(maskCardNumber(item.from_card.toString())),
                             subtitle: Text(item.date),
                             trailing: Text(item.summa.toString()),
-                            leading: Icon(
+                            leading: const Icon(
                               Icons.file_download_outlined,
                               color: Colors.blue,
                             ),

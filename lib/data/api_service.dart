@@ -1,8 +1,11 @@
+// ignore_for_file: library_prefixes, unnecessary_string_interpolations, unnecessary_brace_in_string_interps, non_constant_identifier_names
+
 import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as getX;
+import 'package:uz_pay/data/models/add_account.dart';
 import 'package:uz_pay/data/models/card_model.dart';
 import 'package:uz_pay/data/models/category_model.dart';
 import 'package:uz_pay/data/models/category_with_id_model.dart';
@@ -48,8 +51,7 @@ class ApiService {
 
   Future<LoginResponse?> login(String phone, String password) async {
     try {
-      final response = wrapResponse(await dio
-          .post("login", data: {"phone": phone, "password": password}));
+      final response = wrapResponse(await dio.post("login", data: {"phone": phone, "password": password}));
 
       if (response.success) {
         return LoginResponse.fromJson(response.data);
@@ -186,6 +188,26 @@ class ApiService {
       if (response.success) {
         return (response.data as List<dynamic>)
             .map((e) => PaymentHistoroyModel.fromJson(e))
+            .toList();
+      } else {
+        getX.Get.showSnackbar(getX.GetSnackBar(
+          messageText: Text(response.message),
+        ));
+      }
+    } catch (e) {
+      getX.Get.showSnackbar(getX.GetSnackBar(
+        messageText: Text(e.toString()),
+      ));
+    }
+    return [];
+  }
+  Future<List<AddAccount>> addAccount(String pay_id) async {
+    try {
+      final response = wrapResponse(await dio.post("add/account", data: {"pay_id":pay_id}));
+
+      if (response.success) {
+        return (response.data as List<dynamic>)
+            .map((e) => AddAccount.fromJson(e))
             .toList();
       } else {
         getX.Get.showSnackbar(getX.GetSnackBar(

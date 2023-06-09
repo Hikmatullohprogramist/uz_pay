@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, unused_local_variable
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -31,7 +31,7 @@ class AddCardViewModel extends ChangeNotifier {
     var data = await apiService.addCard(name, card_number, validity_period);
     progress = false;
     notifyListeners();
-    Get.offAll(MainScreen());
+    Get.offAll(const MainScreen());
 
   }
 }

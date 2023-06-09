@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:uz_pay/screens/service/service_view_model.dart';
-import 'package:uz_pay/utils/customview.dart';
 import 'package:uz_pay/widgets/service_item.dart';
 
 // ignore: must_be_immutable

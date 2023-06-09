@@ -21,11 +21,11 @@ class _AddCardState extends State<AddCard> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Add Card"),
+          title: const Text("Add Card"),
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Column(
               children: [
                 CustomInput(
@@ -42,7 +42,7 @@ class _AddCardState extends State<AddCard> {
                   inputType: TextInputType.number,
                   miLenght: 16,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 CustomInput(
@@ -51,7 +51,7 @@ class _AddCardState extends State<AddCard> {
                     controller: cardDateController,
                     inputType: TextInputType.number,
                     miLenght: 5),
-                SizedBox(
+                const SizedBox(
                   height: 48,
                 ),
                 Consumer<AddCardViewModel>(

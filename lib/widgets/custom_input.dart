@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, must_be_immutable, unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
 
@@ -10,6 +10,8 @@ class CustomInput extends StatefulWidget {
   int miLenght;
   TextEditingController? controller;
   Widget? suffix;
+  Widget? prefix;
+
 
   CustomInput(
       {this.hint = "",
@@ -19,6 +21,8 @@ class CustomInput extends StatefulWidget {
       this.miLenght = 6,
       this.controller,
         this.suffix,
+        this.prefix
+
       });
 
   @override
@@ -49,11 +53,13 @@ class _CustomInputState extends State<CustomInput> {
           height: 56,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
-            color: const Color(0xffeef6f9),
+            color: widget.fillColor == "" ?const Color(0xffeef6f9) :widget.fillColor ,
+
           ),
           padding: const EdgeInsets.only(
             left: 20,
           ),
+
           child: TextField(
             controller: widget.controller,
             onChanged: (value) {
@@ -76,15 +82,17 @@ class _CustomInputState extends State<CustomInput> {
             keyboardType: widget.inputType,
           
             decoration: InputDecoration(
-          suffixIcon:widget.suffix,
-                border: InputBorder.none, hintText: widget.hint),
+          suffix:widget.suffix,
+                border: InputBorder.none, hintText: widget.hint,
+
+            prefix: widget.prefix),
           
           ),
         ),
         if (errortext.isNotEmpty)
           Text(
             errortext,
-            style: TextStyle(fontSize: 16, color: Colors.red),
+            style: const TextStyle(fontSize: 16, color: Colors.red),
           )
       ],
     );

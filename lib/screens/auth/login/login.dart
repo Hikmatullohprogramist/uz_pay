@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               child: Text(
                 getIt.get<PrefUtils>().getLanguage() == "uz" ? "EN" : "UZ",
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
                 ),
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
-                                                Registration(),
+                                                const Registration(),
                                           ));
                                     },
                                     child: const Text(

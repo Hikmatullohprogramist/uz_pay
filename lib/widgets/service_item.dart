@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:uz_pay/utils/customview.dart';
 
 // ignore: must_be_immutable
@@ -22,10 +21,10 @@ class ServiceItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(width: 15,),
+              const SizedBox(width: 15,),
 
               buildImage(path, false, 100,100),
-              SizedBox(width: 20,),
+              const SizedBox(width: 20,),
               Text(name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),)
             ],
           ),
